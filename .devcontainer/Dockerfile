@@ -53,3 +53,7 @@ RUN curl -fsSL https://github.com/exercism/cli/releases/download/v3.0.13/exercis
     ln -s /exercism/exercism && \
     cd /etc/bash_completion.d && \
     ln -s /exercism/shell/exercism_completion.bash
+
+COPY user.json /exercism/user.json
+
+ENV EXERCISM_CONFIG_HOME=/workspaces/rust-practice/exercism_config

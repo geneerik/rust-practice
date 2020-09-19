@@ -12,12 +12,14 @@
 		// VS Code don't watch files under ./target
 		"files.watcherExclude": {
 			"**/target/**": true
-		}
+		},
+		"rust-analyzer.updates.askBeforeDownload": false
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"rust-lang.rust",
+		"matklad.rust-analyzer",
 		"bungcip.better-toml",
 		"vadimcn.vscode-lldb",
 		// (Optional) Displays the current CPU stats, memory/disk consumption, clock freq. etc. of the container host in the VS Code status bar.
@@ -28,7 +30,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "rustc --version",
+	"postCreateCommand": "(rustc --version && mkdir -p ${EXERCISM_CONFIG_HOME} && (if [ ! -e ${EXERCISM_CONFIG_HOME}/user.json ]; then cp /exercism/user.json ${EXERCISM_CONFIG_HOME}/; fi)) 2>&1",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
